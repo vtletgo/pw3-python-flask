@@ -1,0 +1,1 @@
+print ("Mucho gusto! Iniciando el escolores de lo python")

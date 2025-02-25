@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games page</title>
+</head>
+<body>
+    <h1>Bem-vindo a página de jogos</h1>
+    <hr>
+
+    {*jinja2*}
+    <p>Game mais jogado do momento:</p>
+
+    <!-- <ul>
+        <li>Titulo: {# {titulo} #}</li>
+        <li>Ano: {# {ano} #}</li>
+        <li>Categoria:{# {categoria} #}</li>
+    </ul> -->
+
+    <!-- Percorrendo o dicionário -->
+
+    {% for chave, valor in game.items() %}
+    <details>
+    <summary>{{chave}}</summary>
+        {{valor}}
+    </details>
+    <br>
+    {% endfor %}
+
+    <p>O jogo {{game['titulo']}} tem {{2025 - game['ano']}} anos.</p>
+    <hr>
+    <p>  O jogo {{game['titulo']}} está sendo jogado por:</p>
+    <ol>
+        {% for jogador in jogadores %}
+        <li>{{jogador}}</li>
+        {% endfor %}
+    </ol>
+    <hr>
+
+    <ul>
+        {% for jogo in jogos %}
+        <li>{{jogo}}</li>
+        {% endfor %}
+    </ul>
+   
+</html>
