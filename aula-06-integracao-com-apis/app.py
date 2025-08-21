@@ -18,8 +18,13 @@ DB_NAME = 'thegames'
 # Configura o Flask com o banco definido
 app.config['DATABASE_NAME'] = DB_NAME
 
+<<<<<<< HEAD
 # Passando o endereço do banco ao Flask
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://root@localhost/{DB_NAME}'
+=======
+# Passando o endereço do banco ao Flask (CORRIGIDO)
+app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://root:@localhost/{DB_NAME}'
+>>>>>>> 01ebd352993d2781728c8d2fab00cea82eda676b
 
 # Iniciando o servidor no localhost, porta 5000, modo de depuração ativado
 if __name__ == '__main__':
@@ -30,14 +35,10 @@ if __name__ == '__main__':
                                  charset='utf8mb4',
                                  cursorclass=pymysql.cursors.DictCursor)
     # Tentando criar o banco
-    # Try, trata o sucesso
     try:
-        # with cria um recurso temporariamente
-        with connection.cursor() as cursor:  # alias
-            # Cria o banco de dados (se ele não existir)
+        with connection.cursor() as cursor:
             cursor.execute(f"CREATE DATABASE IF NOT EXISTS {DB_NAME}")
             print(f"O banco de dados {DB_NAME} está criado!")
-    # Except, trata a falha
     except Exception as e:
         print(f"Erro ao criar o banco de dados: {e}")
     finally:
